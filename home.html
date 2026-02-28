@@ -3,49 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uy Loyihalari | Professional</title>
+    <title>SHAVKAT AI-ARCHITECT | Virtual Tour Edition</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        body { background: #f4f4f4; color: #333; }
-        nav { background: #2c3e50; padding: 20px; color: white; text-align: center; position: sticky; top: 0; z-index: 100; }
-        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
-        .container { padding: 50px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 10px; overflow: hidden; shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .btn { display: inline-block; padding: 10px 20px; background: #e67e22; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px; }
-        footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 50px; }
+        :root { --p: #1a1a1a; --g: #c5a059; --w: #ffffff; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #f0f2f5; }
+
+        /* Virtual Reality Modal */
+        #vr-overlay { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.95); z-index: 20000; color:white; }
+        #panorama { width: 100%; height: 70vh; background: #000; }
+        .vr-details { padding: 20px; background: var(--p); height: 30vh; overflow-y: auto; }
+        .close-vr { position: absolute; top: 20px; right: 20px; font-size: 30px; cursor: pointer; color: var(--g); z-index: 20001; }
+
+        /* Main UI */
+        header { background: var(--p); color: white; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo span { color: var(--g); }
+        
+        .filter-panel { background: white; padding: 20px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        input, select, button { padding: 12px; border-radius: 8px; border: 1px solid #ddd; outline:none; }
+        .btn-gold { background: var(--g); color: white; border: none; font-weight: bold; cursor: pointer; }
+
+        .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; padding: 40px 5%; }
+        .house-item { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.4s; }
+        .house-item:hover { transform: translateY(-10px); }
+        .house-img { height: 230px; width: 100%; object-fit: cover; }
+        .house-info { padding: 20px; }
+        .spec-list { display: flex; justify-content: space-between; margin: 15px 0; font-size: 13px; color: #666; }
     </style>
 </head>
 <body>
-    <nav><h1>URBAN ARCHITECT</h1></nav>
-    <div class="hero">
-        <h2>Zamonaviy Uy Loyihalari</h2>
-        <p>Sizning orzungizdagi uy biz bilan boshlanadi</p>
+
+    <div id="vr-overlay">
+        <span class="close-vr" onclick="closeVR()">&times;</span>
+        <div id="panorama"></div>
+        <div class="vr-details">
+            <h2 id="vr-title">Loyiha nomi</h2>
+            <div id="vr-specs" style="margin: 15px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                </div>
+            <button class="btn-gold" style="width: 200px;"><i class="fa fa-download"></i> PDF Loyihani Yuklash</button>
+        </div>
     </div>
-    <div class="container">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=500" alt="Villa">
-            <div class="card-body">
-                <h3>Modern Villa</h3>
-                <p>250 m² | 5 xona</p>
-                <a href="tel:+998901234567" class="btn">Bog'lanish</a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=500" alt="Eco">
-            <div class="card-body">
-                <h3>Eco House</h3>
-                <p>180 m² | 3 xona</p>
-                <a href="tel:+998901234567" class="btn">Bog'lanish</a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500" alt="Classic">
-            <div class="card-body">
-                <h3>Classic Mansion</h3>
-                <p>400 m² | 7 xona</p>
-                <a href="tel:+998901234567" class="btn">Bog'lanish</a>
-            </div>
+
+    <header>
+        <h2 class="logo">SHAVKAT<span>VR-ARCH</span></h2>
+        <div id="user-info"></div>
+    </header>
+
+    <div class="filter-panel">
+        <input type="number" id="price-in" placeholder="Byudjet ($)">
+        <select id="room-in">
+            <option value="all">Xonalar (Hammasi)</option>
+            <option value="3">3 xona</option>
+            <option value="5">5 xona</option>
+        </select>
+        <button class="btn-gold" onclick="applyFilters()">LOYIHALARNI FILTRLASH</button>
+    </div>
+
+    <div class="catalog" id="catalog-list"></div>
+
+    <script>
+        // Kengaytirilgan loyihalar bazasi
+        const database = [
+            {
+                id: 1, name: "Premium Villa 360", price: 95000, rooms: 5, area: 280, 
+                mat: "Pishgan g'isht", 
+                img: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600",
+                panorama: "https://pannellum.org/images/alma.jpg", // 360 rasm linki
+                details: ["Oshxona: 22m²", "Vanna: 8m²", "Eshik: 2.2m", "Shift: 3.5m"]
+            },
+            {
+                id: 2, name: "Eco Minimalist", price: 35000, rooms: 3, area: 110, 
+                mat: "Gazobeton", 
+                img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600",
+                panorama: "https://pannellum.org/images/jure.jpg",
+                details: ["Oshxona: 14m²", "Vanna: 5m²", "Eshik: 2.1m", "Shift: 3.0m"]
+            },
+            {
+                id: 3, name: "Classic Home", price: 55000, rooms: 4, area: 160, 
+                mat: "Somon g'isht", 
+                img: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=600",
+                panorama: "https://pannellum.org/images/cerro-toco-0.jpg",
+                details: ["Oshxona: 18m²", "Vanna: 6m²", "Eshik: 2.1m", "Shift: 3.2m"]
+            }
+        ];
+
+        function render(data) {
+            const list = document.getElementById('catalog-list');
+            list.innerHTML = '';
+            data.forEach(item => {
+                list.innerHTML += `
+                    <div class="house-item">
+                        <img src="${item.img}" class="house-img">
+                        <div class="house-info">
+                            <h3>${item.name}</h3>
+                            <div class="spec-list">
+                                <span><i class="fa fa-expand"></i> ${item.area}m²</span>
+                                <span><i class="fa fa-bed"></i> ${item.rooms} xona</span>
+                                <span><i class="fa fa-dollar-sign"></i> ${item.price}</span>
+                            </div>
+                            <button class="btn-gold" style="width:100%" onclick="openVR(${item.id})">
+                                <i class="fa fa-street-view"></i> ICHIGA KIRISH (360°)
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function openVR(id) {
+            const house = database.find(h => h.id === id);
+            document.getElementById('vr-title').innerText = house.name;
+            const specs = document.getElementById('vr-specs');
+            specs.innerHTML = house.details.map(d => `<div style="background:#333; padding:10px; border-radius:5px">${d}</div>`).join('');
+            
+            document.getElementById('vr-overlay').style.display = 'block';
+
+            // Pannellum 360 View-ni ishga tushirish
+            pannellum.viewer('panorama', {
+                "type": "cubic",
+                "cubeMap": [
+                    "https://pannellum.org/images/alma.jpg",
+                    "https://pannellum.org/images/alma.jpg",
+                    "https://pannellum.org/images/alma.jpg",
+                    "https://pannellum.org/images/alma.jpg",
+                    "https://pannellum.org/images/alma.jpg",
+                    "https://pannellum.org/images/alma.jpg"
+                ],
+                "autoLoad": true
+            });
+        }
+
+        function closeVR() {
+            document.getElementById('vr-overlay').style.display = 'none';
+        }
+
+        render(database);
+    </script>
+</body>
+</html>
